@@ -1,0 +1,76 @@
+:root {
+    --colour-white: white;
+    --colour-black: #2C2C2C;
+    --colour-grey: #E8E8E8;
+    --colour-primary: #333a56;
+    --colour-secondary: #52658f;
+
+    /* Timeline parameters */
+    --mermaid-edge-color: var(--colour-black);
+}
+
+.title {
+    color: var(--colour-black) !important;
+}
+
+.quarto-title-author-name {
+    color: var(--colour-primary) !important;
+}
+
+.reveal .slide-menu-button .fa-bars::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(51, 58, 86)" class="bi bi-list" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>') !important;
+}
+
+h2 {
+    font-size: 3rem !important;
+    margin: 0 !important;
+    margin-bottom: 2rem !important;
+}
+
+h3 {
+    font-size: 2rem !important;
+    margin-bottom: 0 !important;
+}
+
+h4 {
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+}
+
+ul > li {
+    font-size: 1.5rem !important;
+}
+
+#cb2 > pre > code {
+    height: 350px;
+}
+
+.pros {
+    background-color: #D4EDDA;
+    height: 550px;
+}
+
+.pros > ul > li {
+    font-size: 2.5rem !important;
+    margin: 0 1rem;
+}
+
+.cons {
+    height: 550px;
+    background-color: #F8D7DA;    
+}
+
+.cons > ul > li {
+    font-size: 2.5rem !important;
+    margin: 0 1rem;
+}
+
+#future-career-plans > h4 {
+    color: var(--colour-primary);
+    font-size: 2.5rem !important;
+}
+
+.aside-footnotes > li {
+    color: var(--colour-black) !important;
+    font-size: 0.8em !important;
+}

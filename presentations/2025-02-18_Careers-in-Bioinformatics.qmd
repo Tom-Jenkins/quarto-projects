@@ -1,0 +1,334 @@
+---
+title: "There and Back Again: A Postdoc's Tale"
+title-slide-attributes:
+  data-background-image: _img/thomas-schweighofer-5dB9WGpJbFc-unsplash.jpg
+  data-background-size: cover
+  data-background-opacity: "0.1"
+author: "By Tom Jenkins"
+mainfont: "Pirata One"
+format:
+  revealjs:
+    css: _css/styles.css
+    toc: true
+    toc-title: Talk outline
+    toc-depth: 2
+    # embed-resources: true
+    # theme: night
+    # theme: simple
+    theme: default
+    incremental: false
+    logo: _img/logo.svg
+    # footer: "There and Back Again: A Postdoc's Tale"
+    # slide-number: true
+    # multiplex: true
+    preview-links: true
+    transition: zoom
+    transition-speed: default
+---
+
+## Career timeline
+
+```{mermaid}
+%%{
+  init: {
+    "theme": "forest"
+  }
+}%%
+  timeline
+  section University of Exeter 
+    2014-2018 : PhD : Population genetics : Bioinformatics : R
+    2018-2021 : Postdoc : Genome assembly : GWAS : R Shiny
+  section Natural England
+    2021-2022 : Senior Data Analyst : GIS & spatial analysis : Species distribution modelling : Interactive maps
+  section APHA
+    2022-2023 : Bioinformatician & Software Developer : Bovine TB genomics : JavaScript & Nextflow : Web applications
+  section University of Exeter
+    2023-Present : Postdoc : R package mapmixture : RNA-seq : Develop own website
+```
+
+--- 
+
+## First R Shiny App {.unnumbered .unlisted}
+
+[Link to App](https://tomjenkins.shinyapps.io/shiny_fao_app/) 
+
+[Link to Code](https://github.com/Tom-Jenkins/shiny_fao_app) 
+
+--- 
+
+## Natural England (NE)
+
+::: {.fragment}
+### Who are Natural England?
+* Advise government on the natural environment in England
+:::
+
+::: {.fragment}
+### What was my role?
+* 'Handyman' advisor, analyst and visualisation of data
+:::
+
+::: {.fragment}
+### What did I enjoy?
+* Getting involved in multiple projects
+* Developing GIS skills and creating interactive maps
+:::
+
+::: {.fragment}
+### What did not work for me?
+* No one was really sure what my role was (including myself)
+* Project leads not always willing to listen to new ideas
+:::
+---
+
+## Interactive figure example (R leaflet) {.unnumbered .unlisted}
+
+<iframe src="https://tom-jenkins.github.io/seafan_sdm/figures/Figure4_interactive" width="100%" height="600"></iframe>
+
+::: footer
+Jenkins and Stevens (2022). <em>PeerJ</em>. doi: 10.7717/peerj.13509.
+:::
+
+---
+
+## Animal and Plant Health Agency (APHA)
+
+::: {.fragment}
+### Who are APHA?
+* Executive agency of Defra responsible for identification and control of animal and plant diseases 
+:::
+
+::: {.fragment}
+### What was my role?
+* Manage / develop bioinformatics pipelines and co-develop a bovine TB surveillance tool
+:::
+
+::: {.fragment}
+### What did I enjoy?
+* Developing JavaScript and Nextflow skills
+* Having a dedicated software development project to put JS skills into practice
+:::
+
+::: {.fragment}
+### What did not work for me?
+* No actual bioinformatics because pipelines were already written and no scope to analyse TB isolates in a research context
+* Indecision around the direction of the surveillance web application
+:::
+
+---
+
+## Web app I: Assembly Stats Viewer
+
+:::: {.columns}
+
+::: {.column width="25%"}
+Assembly Stats Viewer
+
+* [Web application](https://assemblystatsviewer.netlify.app/)
+* JavaScript
+* NCBI Datasets API
+* Udemy JS [course](https://www.udemy.com/course/the-complete-javascript-course/)
+:::
+
+::: {.column width="75%"}
+<iframe src="https://assemblystatsviewer.netlify.app/" width="100%" height="600"></iframe>
+:::
+
+::::
+
+---
+
+## Developing bioinformatics pipelines using nextflow
+
+::: {.fragment .fade-out .absolute width="100%"}
+<div style="text-align: center; height: 600px;"><img src="_img/nextflow_pipelines.png"></div>
+:::
+
+::: {.fragment .fade-in-then-out .absolute width="100%"}
+<div style="text-align: center; height: 600px;"><img src="_img/nextflow_pipelines_expression.png"></div>
+:::
+
+::: {.fragment .absolute width="100%"}
+
+#### Data example
+```{.bash} 
+$ ls input/
+SampleA_1.fq.gz SampleB_1.fq.gz
+SampleA_2.fq.gz SampleB_2.fq.gz
+```
+
+<div style="margin-bottom: 1.5rem;"></div>
+
+#### Usage example
+
+```{.bash}
+# Clone repository (run once)
+git clone https://github.com/Tom-Jenkins/nextflow-pipelines.git
+
+# Set conda environment (run once)
+conda env create -f ~/nextflow-pipelines/env/quantifyexpression.yml
+
+# Activate conda environment
+conda activate quantifyexpression # or source activate quantifyexpression
+
+# Variables
+cpus=20
+reads=/path/to/reads/directory
+transcriptome=/path/to/transcriptome.fasta
+outdir=/path/to/output/directory
+
+# Run pipeline
+nextflow run ~/nextflow-pipelines/src/quantifyexpression.nf \
+    --reads ${reads} \
+    --suffix "_{1,2}.fq.gz" \
+    --transcriptome ${transcriptome} \
+    --kallisto \
+    --outdir ${outdir} \
+    --cpus ${cpus}
+
+# Merge quantification files (columns=samples, rows=genes)
+python ~/nextflow-pipelines/misc/merge_quant_files.py \
+  --kallisto kallisto_output/ kallisto_quant_results.csv
+```
+
+:::
+
+---
+
+## Postdoc II: impact of artificial lighting on gene expression and adaptive mutations in bats
+
+:::: {.columns}
+
+::: {.column width="50%" .fragment}
+![](_img/Fieldwork1.jpg){height="500"}
+:::
+
+::: {.column width="50%" .fragment}
+![](_img/HBB.png)
+:::
+
+::::
+
+---
+
+## Web app II: LobsterGeneX
+
+:::: {.columns}
+
+::: {.column width="25%"}
+LobsterGeneX
+
+- [Web application](https://lobstergenex.com/)
+- JavaScript
+- [Echarts](https://echarts.apache.org/en/index.html) JS library
+:::
+
+::: {.column width="75%"}
+<iframe src="https://lobstergenex.com/" width="1000" height="600"></iframe>
+:::
+
+::::
+
+---
+
+## Developing an R package: [mapmixture]{.smallcaps} 
+
+:::: {.columns .fragment}
+
+
+::: {.column width="30%"}
+<div style="margin-bottom: 3.5rem;"></div>
+* Re-using 10s-100s lines of code plotting admixture maps on multiple projects
+* Wrote lots of functions to try and automate
+* Converted to R package!
+* [R Packages (2e) book](https://r-pkgs.org/) (Hadley Wickham)
+* Link to [mapmixture](https://doi.org/10.32614/CRAN.package.mapmixture) on CRAN 
+:::
+
+::: {.column width="70%"}
+![](_img/mapmixture.png){height="550"}
+:::
+
+::::
+
+---
+
+## Climate UEA consultancy contract
+
+::: {.column width="25%"}
+* How did it come about?
+* Data prep using R
+* Web apps built using vanilla JavaScript, Leaflet & ECharts
+* [State of Wildfires](https://www.uea.ac.uk/climate/climate-data/state-of-wildfires)
+* [National Contributions to Global Warming](https://www.uea.ac.uk/climate/climate-data/attribution-of-global-warming)
+* Collaborated with UEA IT staff
+* Future plans to convert to React apps
+:::
+
+::: {.column width="75%"}
+<iframe src="https://climate.uea.co/National-Contributions-Map/" width="100%" height="600"></iframe>
+
+:::
+
+---
+
+
+## My Postdoc experience: pros and cons
+
+:::: {.columns style="display: flex; gap: .5em;"}
+
+::: {.column .pros width="50%" .fragment}
+* The potential to discover something new
+* Flexibility to take something and run with it
+* Being surrounded by talented and ambitious individuals
+* Clear project end goals (e.g. publish paper)
+:::
+
+::: {.column .cons width="50%" .fragment}
+* Short-term contracts
+* Not much, if any, internal financial support for staff development
+* Reviewing papers is expected but not rewarded
+:::
+
+::::
+
+---
+
+## My Civil Service experience: pros and cons
+
+:::: {.columns style="display: flex; gap: .5em;"}
+
+::: {.column .pros width="50%" .fragment}
+* Worked with some talented and down-to-earth people within teams
+* Usually money available to pay for relevant upskilling
+* Satisfaction when you know you did or delivered something good that will make a real difference
+:::
+
+::: {.column .cons width="50%" .fragment}
+* Project leads not willing to try new things which may improve methods or outputs
+* "Our focus should be on what the contract says we should deliver"
+* Things take longer
+* Too many meetings
+:::
+
+::::
+
+---
+
+## Future career plans {background-gradient="linear-gradient(to bottom right, var(--colour-white), #b2dcf0)"}
+
+<br>
+
+#### Another Postdoc^[Current contract expires September 2025] / Fellowship {.fragment}
+
+<br>
+
+#### [TJ Data Visualisation](https://tjdatavisualisation.netlify.app/) Freelance Business {.fragment}
+<br>
+
+#### Data Scientist / Data Visualisation Analyst / Web Developer / Software Engineer {.fragment}
+
+::: footer
+This presentation was written using [Quarto](https://quarto.org/docs/presentations/) and [reveal.js](https://revealjs.com/) code
+:::
+
